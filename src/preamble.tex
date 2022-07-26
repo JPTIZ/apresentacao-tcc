@@ -1,0 +1,105 @@
+\documentclass[t]{beamer}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+%\usepackage[scaled]{helvet}
+\usepackage[sfdefault]{FiraSans}
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcommand{\thetitle}{Extração de dados processuais dos Tribunais de Justiça para auxílio ao Jornalismo Investigativo}
+\newcommand{\theauthor}{João Paulo Taylor Ienczak Zanette}
+
+\title{\thetitle}
+\author{\theauthor}
+
+%%%
+%%% Define cores
+%%%
+\definecolor{cinza}{HTML}{75818B}
+
+%%%
+%%% Remove a barra de navegação do Beamer
+%%%
+\setbeamertemplate{navigation symbols}{}
+
+%%%
+%%% Margem dos slides
+%%%
+\setbeamersize{text margin left=10mm,text margin right=5mm}
+
+%%%
+%%% Redefine a fonte do título dos slides
+%%%
+\setbeamercolor{frametitle}{fg=cinza}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{frametitle}{size=\huge}
+
+%%%
+%%% Ajusta a posição do título dos slides e início do texto
+%%%
+\addtobeamertemplate{frametitle}{\vspace*{2mm}}{\vspace*{5mm}}
+
+%%%
+%%% Adiciona páginação nos slides
+%%%
+%%% Caso não queira, basta comentar este bloco inteiro
+%%% para ocultar a paginação
+%%%
+\addtobeamertemplate{navigation symbols}{}{
+\usebeamerfont{footline}
+\usebeamercolor[fg]{footline}
+}
+\setbeamercolor{footline}{fg=cinza}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamerfont{footline}{size=\tiny}
+\setbeamertemplate{footline}{
+\usebeamerfont{page number in head}
+\usebeamercolor[fg]{page number in head}
+\hspace{5mm}
+\insertframenumber/\inserttotalframenumber
+\vspace{5mm}
+}
+
+%%%
+%%% Redefine símbolo padrão do itemize
+%%%
+\setbeamertemplate{itemize items}[ball]
+
+%%%
+%%% Insere numeração nas figuras
+%%%
+\setbeamertemplate{caption}[numbered]
+
+%%%
+%%% Imagem de fundo a ser usada em todos os slides (exceto
+%%% no primeiro e no último)
+%%%
+\usebackgroundtemplate
+{
+\includegraphics[width=\paperwidth,height=\paperheight]{fundo.png}
+}
+
+%%%
+%%% Adiciona slide de "Estrutura"
+%%%
+\AtBeginSection[]{\frame{\frametitle{Estrutura}\tableofcontents
+[current]}}
+
+%%%
+%%% Define fontes e cores do slide de "Estrutura"
+%%%
+\setbeamerfont{section in toc}{series=\bfseries}
+\setbeamercolor{section in toc}{fg=gray}
+\setbeamerfont{section in toc shaded}{series=\mdseries}
+\setbeamercolor{section in toc shaded}{fg=gray!01}
+\setbeamercolor{subsection in toc}{fg=cinza}
+\setbeamercolor{subsection in toc shaded}{fg=gray!60}
+\setbeamercolor{subsubsection in toc}{fg=cinza}
+\setbeamercolor{subsubsection in toc shaded}{fg=gray!60}
+
+\mode<presentation>

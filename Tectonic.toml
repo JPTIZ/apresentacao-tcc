@@ -1,0 +1,11 @@
+[doc]
+name = "Extração de dados processuais dos Tribunais de Justiça para auxílio ao Jornalismo Investigativo"
+bundle = "https://relay.fullyjustified.net/default_bundle_v32.tar"
+
+[[output]]
+name = "presentation-tcc"
+type = "pdf"
+preamble = "preamble.tex"
+index = "presentation.tex"
+postamble = "postamble.tex"
+shell_escape = true
