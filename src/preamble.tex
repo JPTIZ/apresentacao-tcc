@@ -15,6 +15,61 @@
     shapes,
     trees,
 }
+\usepackage{minted}
+\usepackage{booktabs}
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [
+    rectangle,
+    draw,
+    fill=blue!20,
+    text width=5em,
+    text centered,
+    rounded corners,
+    minimum height=4em,
+]
+\tikzstyle{line} = [
+    draw,
+    -latex',
+]
+\tikzstyle{cloud} = [
+    draw,
+    ellipse,
+    fill=red!20,
+    node distance=3cm,
+    text width=4em,
+    minimum height=2em,
+]
+\newcommand{\bloco}[5]{
+    % row, t, size, color, label
+    \filldraw[
+        fill=#4!30!white,
+        draw=#4,
+    ]
+        (#2+1,#1) rectangle (#2+#3+1,#1+1)
+        node at (#2 + 1.5,#1 + 0.5) {#5}
+    ;
+}
+
+\newcommand{\blocoR}[2]{
+    % t, label
+    \bloco{6}{#1}{1}{red}{#2}
+}
+\newcommand{\blocoT}[2]{
+    % t, label
+    \bloco{6}{#1}{1}{gray}{#2}
+}
+\newcommand{\blocoE}[3]{
+    % row, t, size
+    \bloco{6-#1}{#2}{#3}{blue}{$E_#1$}
+}
+\usepackage{pgfplots}
+\pgfplotsset{
+  compat=newest,
+  table/search path={src},
+}
+\usepackage{pgfplotstable}
+\pgfplotstableset{col sep=comma}
 
 %\usepackage[scaled]{helvet}
 \usepackage[sfdefault]{FiraSans}
