@@ -64,25 +64,42 @@
         \begin{tikzpicture}[
                 scale=0.6,
                 transform shape,
-                every node/.append style = {draw, anchor = west},
-                grow via three points={one child at (0.5,-0.8) and two children at (0.5,-0.8) and (0.5,-1.6)},
                 edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)},
-                interface/.style = {rectangle, draw, blue, fill=blue!20},
-                utils/.style = {rectangle, draw, gray, fill=gray!20},
-                extract/.style = {rectangle, draw, green!50!black, fill=green!20},
+                % Childs
+                module/.style = {grow = down, anchor = west, xshift=1em,
+                    edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)},
+                },
+                category/.style = {},
+                % Categories
+                level 1/.style = {sibling distance = 8em},
+                level 2/.style = {level distance = 5em},
+                interface/.style = {grow = down, rectangle, draw, blue, fill=blue!20},
+                utils/.style = {grow = down, rectangle, draw, gray, fill=gray!20},
+                extract/.style = {grow = down, rectangle, draw, green!50!black, fill=green!20},
             ]
-            \node {tj\_scraper}
-                child {node [extract] {.cache}}
-                child {node [interface] {.cli}}
-                child {node [extract] {.download}}
-                child {node [utils] {.errors}}
-                child {node [extract] {.export}}
-                child {node [extract] {.html}}
-                child {node {.process}}
-                child {node [utils] {.statistics}}
-                child {node [utils] {.timing}}
-                child {node [utils] {.url}}
-                child {node [blue, fill=blue!20] {.webapp}}
+            \node [draw] {tj\_scraper}
+                child [grow=down] [edge from parent fork down]
+                child [category] {
+                    node[utils] {Utilitários}
+                        child [module, level distance = 1 * 3em] {node [utils] {.errors}}
+                        child [module, level distance = 2 * 3em] {node [utils] {.process}}
+                        child [module, level distance = 3 * 3em] {node [utils] {.statistics}}
+                        child [module, level distance = 4 * 3em] {node [utils] {.timing}}
+                        child [module, level distance = 5 * 3em] {node [utils] {.url}}
+                    }
+                child [category] {
+                    node[interface] {Interface}
+                        child [module, level distance = 1 * 3em] {node [interface] {.cli}}
+                        child [module, level distance = 2 * 3em] {node [interface] {.webapp}}
+                    }
+                %[edge from parent fork down]
+                child [category] {
+                    node[extract] {Extração}
+                        child [module, level distance = 1 * 3em] {node [extract] {.cache}}
+                        child [module, level distance = 2 * 3em] {node [extract] {.download}}
+                        child [module, level distance = 3 * 3em] {node [extract] {.export}}
+                        child [module, level distance = 4 * 3em] {node [extract] {.html}}
+                    }
                 ;
         \end{tikzpicture}
     \end{figure}
