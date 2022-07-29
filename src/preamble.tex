@@ -7,6 +7,15 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{
+    arrows,
+    decorations.pathreplacing,
+    positioning,
+    shapes,
+    trees,
+}
+
 %\usepackage[scaled]{helvet}
 \usepackage[sfdefault]{FiraSans}
 \renewcommand{\familydefault}{\sfdefault}
@@ -103,3 +112,5 @@
 \setbeamercolor{subsubsection in toc shaded}{fg=gray!60}
 
 \mode<presentation>
+
+\newcommand{\todo}[1]{{\textcolor{red}{#1}}}

@@ -1,73 +1,229 @@
 \begin{document}
 
 {
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{capa.png}}
-\begin{frame}[plain]
-    \vspace{18mm}
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth]{capa.png}}
+    \begin{frame}[plain]
+        \vspace{18mm}
+        \begin{flushright}
+        \textcolor{cinza}{\textbf{\large{\thetitle}}}
+    \end{flushright}
+
+    \vspace{-6mm}
     \begin{flushright}
-    \textcolor{cinza}{\textbf{\large{\thetitle}}}
-\end{flushright}
+        \textcolor{cinza}{\textbf{\scriptsize{\theauthor}}}
+    \end{flushright}
 
-\vspace{-6mm}
-\begin{flushright}
-    \textcolor{cinza}{\textbf{\scriptsize{\theauthor}}}
-\end{flushright}
-
-\vspace{-7mm}
-%%%
-%%% Formação | Departamento | Centro
-%%%
-\begin{flushright}
-    \textcolor{cinza}{\scriptsize{
-        Bacharelado em Ciência da Computação | Informática e Estatística | Centro Tecnológico
-    }}
-\end{flushright}
+    \vspace{-7mm}
+    %%%
+    %%% Formação | Departamento | Centro
+    %%%
+    \begin{flushright}
+        \textcolor{cinza}{\scriptsize{
+            Bacharelado em Ciência da Computação | Informática e Estatística | Centro Tecnológico
+        }}
+    \end{flushright}
 
 
-\end{frame}
+    \end{frame}
 }
 
 %%%
 %%% Demais slides (exceto o slide final)
 %%%
+\begin{frame}{Terminologia}
+    \begin{itemize}
+        \item \textbf{Busca:} Conceito genérico de busca;
+        \item \textbf{Consulta:} Processo completo de buscar por processos;
+        \item \textbf{Consulta Processual:} Preencher e enviar o formulário de
+            consulta processual de um TJ.
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Estrutura}
     \tableofcontents
 \end{frame}
 
-\section{Seção 1}
+\section{TJScraper}
 
-\subsection{Subseção 1}
+\begin{frame}{O que é}
+    TJScraper é uma biblioteca e uma aplicação de \textbf{extração} de dados
+    processuais de portais públicos dos Tribunais de Justiça Brasileiro.
 
-\begin{frame}{Título do texto}
-    Use este espaço para escrever o seu texto.
+    \vspace{1em}
+
+    Interfaces:
+    \begin{itemize}
+        \item Linha de Comando (ILC);
+        \item Web.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Organização Geral}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[
+                scale=0.6,
+                transform shape,
+                every node/.append style = {draw, anchor = west},
+                grow via three points={one child at (0.5,-0.8) and two children at (0.5,-0.8) and (0.5,-1.6)},
+                edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
+            ]
+            % \node [draw] (tjscraper) {tj\_scraper};
+            % \node [draw, right=2em of tjscraper] (html) {.html};
+
+            % \path [draw] (tjscraper) -- (html);
+            \node {tj\_scraper}
+                child {node {.cache}}
+                child {node {.cli}}
+                child {node {.download}}
+                child {node {.errors}}
+                child {node {.export}}
+                child {node {.html}}
+                child {node {.process}}
+                child {node {.statistics}}
+                child {node {.timing}}
+                child {node {.url}}
+                child {node {.webapp}}
+                ;
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{ILC}
+    \todo{}
+\end{frame}
+
+\begin{frame}{Aplicação Web}
+    \todo{:)}
+\end{frame}
+
+\section{Estratégias de extração}
+
+\subsection{Como descobrir processos}
+
+\begin{frame}{TJ-RJ: Página de Consulta Processual}
+\end{frame}
+
+\begin{frame}{Sistemas de Numeração}
+    \begin{itemize}
+        \item \textbf{Unificada}: Padronizado pelo CNJ. Formato:
+            ``NNNNNNN-DD.AAAA.J.TR.OOOO''.
+        \item \textbf{Antiga}: Padrão interno de cada TJ. Formato do TJ-RJ:
+            ``AAAA.OOO.NNNNNN-N''.
+    \end{itemize}
+\end{frame}
+
+\subsection{Extração HTML}
+
+\begin{frame}{TJ-RJ: Visualização de Processos}
+    \begin{figure}[htb]
+        \includegraphics[keepaspectratio,width=1\textwidth]{img/tj-rj-1}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{TJ-RJ: Visualização de Processos}
+    \begin{figure}[htb]
+        \includegraphics[keepaspectratio,width=1\textwidth]{img/tj-rj-2}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Etapas}
+    \begin{itemize}
+        \item Descoberta de processos via numeração \textbf{antiga};
+        \item \textit{Download} de processos;
+        \item \textit{Parsing} de HTML;
+        \item Exportação de processos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Scrapy e XPath}
+    % Revisitaremos a escolha de Scrapy mais à frente nas conclusões
+\end{frame}
+
+\subsection{Extração via API JSON}
+
+\begin{frame}{TJ-RJ: Consulta processual via ww3}
+    % Colocar página de busca do ww3
+\end{frame}
+
+\begin{frame}{TJ-RJ: Consulta processual via ww3}
+    % Colocar logs de Network do navegador
+\end{frame}
+
+\begin{frame}{TJ-RJ: Objetos JSON}
+    % Mostrar resposta para numeração única (pode ser print do navegador)
+    % Mostrar resposta para numeração antiga (pode ser print do navegador)
+\end{frame}
+
+\begin{frame}{Etapas}
+    \begin{itemize}
+        \item Descoberta de processos via numeração \textbf{unificada};
+        \item \textit{Download} de processos via numeração \textbf{antiga};
+        \item Seleção dos campos desejados;
+        \item Exportação de processos.
+    \end{itemize}
+\end{frame}
+
+\section{Estratégias de Aceleração de Consulta}
+
+\subsection{Requisições Assíncronas}
+
+% TODO: Nesta seção, tentar explicar via diagramas (1) e (2)
+
+\begin{frame}{Requisições Assíncronas}
+    % Mostrar só em que ponto se colocariam e como foi implementado
+    % (1) O diagrama pode ser uma cópia do que está na monografia
+\end{frame}
+
+\begin{frame}{Controle de Tráfego via Lotes}
+    % Comentar do uso de semáforos, etc.
+    % (2) Aqui o diagrama pode ser um "zoom-out" do diagrama da monografia só
+    % que com mais seções, explicitando os lotes.
+\end{frame}
+
+\subsection{\textit{Cache} dos processos}
+
+\section{Análise de Experimentos}
+
+\subsection{Configuração Experimental}
+
+\subsection{Resultados Experimentais}
+
+\section{Conclusões e Perspectivas}
+
+\begin{frame}{Conclusões do Trabalho}
+\end{frame}
+
+\begin{frame}{``O que fazer?''}
+    % Trabalhos Futuros
 \end{frame}
 
 %%%
 %%% Slide final
 %%%
 {
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{capa.png}}
-\begin{frame}[plain]
-    \vspace{15mm}
-    \begin{center}
-        \textcolor{cinza}{\textbf{Contato}}
-    \end{center}
-    \vspace{-6mm}
-    \begin{center}
-    \textcolor{cinza}{
-        \scriptsize{E-mail: jpaulotiz@gmail.com}}
-    \end{center}
-    \vspace{-6mm}
-    \begin{center}
-    \textcolor{cinza}{\scriptsize{Telefone: (48) 99153-1404}}
-    \end{center}
-    \vspace{-6mm}
-    \begin{center}
-    \textcolor{cinza}{\scriptsize{
-        Site: \url{https://github.com/jptiz}
-    }}
-    \end{center}
-\end{frame}
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth]{capa.png}}
+    \begin{frame}[plain]
+        \vspace{15mm}
+        \begin{center}
+            \textcolor{cinza}{\textbf{Discussões abertas}}
+        \end{center}
+        \vspace{-6mm}
+        \begin{center}
+        \textcolor{cinza}{
+            \scriptsize{E-mail: jpaulotiz@gmail.com}}
+        \end{center}
+        \vspace{-6mm}
+        \begin{center}
+        \textcolor{cinza}{\scriptsize{Telefone: (48) 99153-1404}}
+        \end{center}
+        \vspace{-6mm}
+        \begin{center}
+        \textcolor{cinza}{\scriptsize{
+            Site: \url{https://github.com/jptiz}
+        }}
+        \end{center}
+    \end{frame}
 }
 
 \end{document}
