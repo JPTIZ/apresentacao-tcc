@@ -66,24 +66,23 @@
                 transform shape,
                 every node/.append style = {draw, anchor = west},
                 grow via three points={one child at (0.5,-0.8) and two children at (0.5,-0.8) and (0.5,-1.6)},
-                edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
+                edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)},
+                interface/.style = {rectangle, draw, blue, fill=blue!20},
+                utils/.style = {rectangle, draw, gray, fill=gray!20},
+                extract/.style = {rectangle, draw, green!50!black, fill=green!20},
             ]
-            % \node [draw] (tjscraper) {tj\_scraper};
-            % \node [draw, right=2em of tjscraper] (html) {.html};
-
-            % \path [draw] (tjscraper) -- (html);
             \node {tj\_scraper}
-                child {node {.cache}}
-                child {node {.cli}}
-                child {node {.download}}
-                child {node {.errors}}
-                child {node {.export}}
-                child {node {.html}}
+                child {node [extract] {.cache}}
+                child {node [interface] {.cli}}
+                child {node [extract] {.download}}
+                child {node [utils] {.errors}}
+                child {node [extract] {.export}}
+                child {node [extract] {.html}}
                 child {node {.process}}
-                child {node {.statistics}}
-                child {node {.timing}}
-                child {node {.url}}
-                child {node {.webapp}}
+                child {node [utils] {.statistics}}
+                child {node [utils] {.timing}}
+                child {node [utils] {.url}}
+                child {node [blue, fill=blue!20] {.webapp}}
                 ;
         \end{tikzpicture}
     \end{figure}
